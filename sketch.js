@@ -1,16 +1,18 @@
-var raindrop ;
+var raindrops = [];
 
-function setup() {
-  createCanvas(800,400);
+function setup(){
+  createCanvas(640,360);
+
+  for (i = 0; i < 500 ; i++){
+    raindrops[i] = new raindrop();
+  }
 }
 
-function draw() {
-  background(0,0,0);  
-  
-  for (var i = 50; i < 750; i + 10){
-    raindrop = createSprite(i,30,20,15);
+function draw(){
+  background (230,230,250);
+
+  for (i = 0 ; i < raindrops.length ; i++){
+    raindrops[i].fall();
+    raindrops[i].show();
   }
-  
-  raindrop.display();
-  drawSprites();
 }

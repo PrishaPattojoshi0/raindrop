@@ -1,20 +1,23 @@
-class Raindrop{
-    constructor(x,y){
-         var option= {
-            'restitution': 0.5,
-            'friction': 1,
-            'density': 1.5,
+function raindrop () { 
+    this.x = random(width);
+    this.y = random(-500,-50);
+    this.z = random(0,20);
+    this.len = map(this.z,0,20,10,20);
+    this.ySpeed = map(this.z,0,20,1,20);
+
+    this.fall = function(){
+        this.y = this.y + this.ySpeed;
+        var grav = map(this.z,0,20,0,0.2);
+        this.ySpeed = this.ySpeed + grav;
+        if (this.y > height){
+            this.y = random(-200,-100);
+            this.ySpeed = map(this.z,0,20,4,10);
         }
-    this.bodies= Bodies.rectangle (x,y,width,height,options);
-    this.width= width;
-    this.height= height;
-    World.add(world, this.body);
-    }
-    display(){
-        var angle= this.body.angle;
-        push();
-        translate (this.body.position.x,this.body.position.y);
-        rotate (angle);
-        pop();
-    }
-}
+    };
+    this.show = function(){
+        var thick = map(this.z,0,20,1,3);
+        strokeWeight(thick);
+        stroke(138,43,236);
+        line(this.x,this.y,this.x,this.y+this.len);
+    };
+  }
