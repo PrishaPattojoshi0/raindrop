@@ -12,4 +12,5 @@ function draw() {
   }
   
   raindrop.display();
+  drawSprites();
 }
